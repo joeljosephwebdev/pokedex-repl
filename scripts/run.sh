@@ -1,0 +1,1 @@
+cd .. && cd app && go run .

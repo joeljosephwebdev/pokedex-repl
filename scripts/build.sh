@@ -1,0 +1,1 @@
+cd .. && cd app && go build -o ../build/pokedex_repl && echo "Complete! ./build/pokedex_repl"

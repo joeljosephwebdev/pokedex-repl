@@ -10,6 +10,7 @@
 
 # Test binary, built with `go test -c`
 *.test
+pokedex-repl
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
@@ -23,3 +24,9 @@ go.work.sum
 
 # env file
 .env
+
+# app builds
+build/*
+
+# log files
+*.log
