@@ -11,17 +11,27 @@ import (
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
+	config := commands.Config{
+		Next:     nil,
+		Previous: nil,
+	}
+
+	//start repl loop
 	for {
 		fmt.Print("Pokedex > ")
 
+		//wait for user input
 		scanner.Scan()
 		cleaned := cleanInput.CleanInput(scanner.Text())
+
+		//check if input isn't empty
 		if len(cleaned) < 1 {
 			fmt.Println("Please enter a command. For a list of commands type 'help'.")
 		} else {
+			//check if input contains a valid command
 			if command, exists := commands.Commands[cleaned[0]]; exists {
 				callback := command.Callback()
-				err := callback(cleaned[1:])
+				err := callback(&config, cleaned[1:])
 				if err != nil {
 					fmt.Printf("Failed to execute command - %v\n", err)
 				}
