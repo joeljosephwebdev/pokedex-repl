@@ -1,4 +1,6 @@
-package commands
+package main
+
+import "github.com/joeljosephwebdev/pokedex-repl/internal/pokeapi"
 
 // cliCommand provides the core command registration and management system
 // for the Pokedex application.
@@ -23,12 +25,12 @@ func (c cliCommand) Callback() func(*Config, []string) error {
 	return c.callback
 }
 
-var Commands = map[string]cliCommand{}
+var CommandsList = map[string]cliCommand{}
 
-// Register adds a new command to the Commands map.
+// Register adds a new command to the CommandsList map.
 // It takes a name, description, and callback function as parameters.
 func Register(name string, description string, callback func(*Config, []string) error) {
-	Commands[name] = cliCommand{
+	CommandsList[name] = cliCommand{
 		name:        name,
 		description: description,
 		callback:    callback,
@@ -37,6 +39,7 @@ func Register(name string, description string, callback func(*Config, []string) 
 
 // Config maintains state for paginated API responses.
 type Config struct {
-	Next     *string
-	Previous *string
+	pokeapiClient        pokeapi.Client
+	nextLocationsURL     *string
+	previousLocationsURL *string
 }

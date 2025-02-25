@@ -1,4 +1,4 @@
-package commands
+package main
 
 // Exit provides the exit functionality to close the Pokedex application.
 

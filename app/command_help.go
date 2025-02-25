@@ -1,4 +1,4 @@
-package commands
+package main
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ func init() {
 func Help(config *Config, args []string) error {
 	fmt.Printf("Welcome to the Pokedex!\nUsage:\n\n")
 
-	for _, command := range Commands {
+	for _, command := range CommandsList {
 		fmt.Printf("%s: %s\n", command.Name(), command.Description())
 	}
 	return nil
