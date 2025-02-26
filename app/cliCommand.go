@@ -1,6 +1,8 @@
 package main
 
-import "github.com/joeljosephwebdev/pokedex-repl/internal/pokeapi"
+import (
+	"github.com/joeljosephwebdev/pokedex-repl/internal/pokeapi"
+)
 
 // cliCommand provides the core command registration and management system
 // for the Pokedex application.
