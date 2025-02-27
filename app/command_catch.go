@@ -5,7 +5,7 @@ import (
 )
 
 func init() {
-	Register("catch", "catch takes a pokemon name and attempts to catch that pokemon with a pokeball", Catch)
+	Register("catch", "Throw a pokeball at a specified pokemon. The stronger it is, the harder it is to catch!", Catch)
 }
 
 func Catch(cfg *Config, args []string) error {

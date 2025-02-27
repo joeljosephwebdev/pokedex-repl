@@ -5,7 +5,7 @@ import (
 )
 
 func init() {
-	Register("explore", "Displays all pokemon that can be found at provided location.", Explore)
+	Register("explore", "Displays all pokemon that can be found at the provided location", Explore)
 }
 
 // Explore takes an area name or id and displays a full list of pokemon found in that area

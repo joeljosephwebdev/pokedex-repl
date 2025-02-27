@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 func init() {
-	Register("inspect", "display details about a specified pokemon", Inspect)
+	Register("inspect", "Display details about a specified pokemon", Inspect)
 }
 
-func Inspect(cfg *Config, name []string) error {
-	pokemon, ok := cfg.caughtPokemon[name[0]]
+func Inspect(cfg *Config, args []string) error {
+	pokemon, ok := cfg.caughtPokemon[args[0]]
 	if !ok {
 		fmt.Println("you have not caught that pokemon")
 		return nil
