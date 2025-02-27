@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func (c *Client) ListEncounters(id string) (RespAreaEncounters, error) {
+func (c *Client) GetLocation(id string) (Location, error) {
 	url := baseURL + "/location-area/" + id
 	var data []byte
 
@@ -18,31 +18,31 @@ func (c *Client) ListEncounters(id string) (RespAreaEncounters, error) {
 	} else { // else make call to pokeapi
 		req, err := http.NewRequest("GET", url, nil)
 		if err != nil {
-			return RespAreaEncounters{}, err
+			return Location{}, err
 		}
 
 		res, err := c.httpClient.Do(req)
 		if err != nil {
-			return RespAreaEncounters{}, err
+			return Location{}, err
 		}
 		defer res.Body.Close()
 
 		if res.StatusCode != http.StatusOK {
-			return RespAreaEncounters{}, fmt.Errorf("%s", res.Status)
+			return Location{}, fmt.Errorf("%s", res.Status)
 		}
 
 		data, err = io.ReadAll((res.Body))
 		if err != nil {
-			return RespAreaEncounters{}, err
+			return Location{}, err
 		}
 
 		c.cache.Add(url, data) // add result to the cache
 	}
 
-	var exploreResp RespAreaEncounters
+	var exploreResp Location
 	err := json.Unmarshal(data, &exploreResp)
 	if err != nil {
-		return RespAreaEncounters{}, err
+		return Location{}, err
 	}
 
 	return exploreResp, nil

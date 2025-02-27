@@ -10,7 +10,11 @@ func init() {
 
 // Explore takes an area name or id and displays a full list of pokemon found in that area
 func Explore(cfg *Config, args []string) error {
-	exploreResp, err := cfg.pokeapiClient.ListEncounters(args[0])
+	if len(args) < 1 {
+		return fmt.Errorf("you must provide a location name or id")
+	}
+
+	exploreResp, err := cfg.pokeapiClient.GetLocation(args[0])
 	if err != nil {
 		return err
 	}
@@ -18,7 +22,7 @@ func Explore(cfg *Config, args []string) error {
 	fmt.Printf("Exploring %s\n", exploreResp.Location.Name)
 	fmt.Println("Found Pokemon:")
 	for _, pokemon := range exploreResp.PokemonEncounters {
-		fmt.Println(pokemon.Pokemon.Name)
+		fmt.Printf(" - %s\n", pokemon.Pokemon.Name)
 	}
 
 	return nil

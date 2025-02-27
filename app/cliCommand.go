@@ -39,9 +39,10 @@ func Register(name string, description string, callback func(*Config, []string) 
 	}
 }
 
-// Config maintains state for paginated API responses.
+// Config maintains state for API responses.
 type Config struct {
 	pokeapiClient        pokeapi.Client
 	nextLocationsURL     *string
 	previousLocationsURL *string
+	caughtPokemon        map[string]pokeapi.Pokemon
 }
